@@ -1,1 +1,8 @@
 .idea/*
+chapter4/.gradle/
+chapter4/build/
+chapter4/gradle/
+chapter4/gradlew
+chapter4/gradlew.bat
+chapter4/out/
+chapter4/settings.gradle

@@ -1,8 +1,5 @@
 package chapter4
 
-import kotlin.math.E
-
-
 sealed class Tree<out T>
 data class Node<out T>(val value:T, val left: Tree<T>, val right: Tree<T>) : Tree<T>()
 object Empty : Tree<Nothing>()
@@ -21,5 +18,3 @@ fun  minimalTree(list : List<Int>) : Tree<Int> {
            }
        }
 }
-
-
