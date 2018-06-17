@@ -5,6 +5,7 @@ import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it
+import kotlin.math.E
 
 class TreeTest : Spek({
 
@@ -52,4 +53,25 @@ class TreeTest : Spek({
             }
         }
    }
+
+    describe("Check balanced tree") {
+        given("A balance tree") {
+            it("isBalanced should return true") {
+                assertEquals(true, isBalanced(Node(2,
+                                                             Node(1,Empty, Empty),
+                                                             Node(3, Empty, Empty ))))
+            }
+        }
+        given("An unbalance tree") {
+            it("isBalanced should return false") {
+                assertEquals(false, isBalanced(Node(2,
+                        Node(1,
+                                Node(0,
+                                        Node(-1, Empty, Empty),
+                                        Empty),
+                                Empty),
+                        Node(3, Empty, Empty ))))
+            }
+        }
+    }
 })
