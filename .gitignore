@@ -1,5 +1,5 @@
 .idea/*
-chapter*/gradle/
+chapter*/.gradle/
 chapter*/gradlew
 chapter*/gradlew.bat
 chapter*/out/
