@@ -5,11 +5,6 @@ data class DataNode<out T>(val data: T, val next:Node<T>) : Node<T>()
 object EmptyNode : Node<Nothing>()
 
 
-fun main(args: Array<String>) {
-    println(buildFrom(listOf(1,2,3,4,5,6)))
-    println( removeDuplicates(DataNode(1, DataNode(1, DataNode(1, EmptyNode))), mutableSetOf()) )
-}
-
 fun <T> removeDuplicates(n: Node<T>) : Node<T>{
     return removeDuplicates(n, mutableSetOf())
 }
