@@ -13,7 +13,7 @@ private fun <T> removeDuplicates(n: Node<T>, m: MutableSet<T>) : Node<T> {
     return when(n) {
        is EmptyNode -> EmptyNode
        is DataNode  ->  if( m.contains(n.data)) {
-                            removeDuplicates(n.next, m)
+                          removeDuplicates(n.next, m)
                         } else {
                           m.add(n.data)
                           DataNode(n.data, removeDuplicates(n.next, m))
@@ -22,6 +22,5 @@ private fun <T> removeDuplicates(n: Node<T>, m: MutableSet<T>) : Node<T> {
 }
 
 fun <T> buildFrom(l : List<T>) : Node<T> {
-    val e : Node<T> = EmptyNode
-    return l.foldRight(e) { x, t -> DataNode(x , t) }
+    return l.foldRight(EmptyNode as Node<T>) { x, t -> DataNode(x , t) }
 }
