@@ -18,6 +18,45 @@ fun addParenthesis(count:Int): List<String> {
 
 
 
+fun tripleStep(n : Int) : Int {
+   return when( n ) {
+        0 -> 1
+        1 -> 1
+        2 -> 2
+        else -> tripleStep(n - 1) + tripleStep( n - 2) + tripleStep( n - 3)
+    }
+}
+
+
+fun memoisedTripleStep(n : Int) : Int {
+
+    val map = mutableMapOf<Int, Int>()
+
+    fun memo(v : Int, f: (Int) -> Int) : Int {
+        return when (map.containsKey(v)) {
+            true -> map[v]!!
+            false -> {
+                val r = f(v)
+                map[v] = r
+                r
+            }
+        }
+    }
+
+    fun tripleStepMemo(x : Int) : Int {
+        return when (x) {
+            0 -> 1
+            1 -> 1
+            2 -> 2
+            else -> memo( x - 1, ::tripleStepMemo) + memo(x - 2, ::tripleStepMemo) +
+                    memo( x - 3, ::tripleStepMemo)
+        }
+    }
+    return tripleStepMemo(n)
+}
+
+
+
 
 fun isPalindrome(l:List<Int>) : Boolean {
     fun checkPalindrome(head:Int, n:Int, lst: List<Int>) : Pair<Boolean, List<Int>> {

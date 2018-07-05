@@ -32,4 +32,45 @@ class RecursionTest : Spek({
         }
 
     }
+
+//    describe(" triple steps") {
+//        given(" some step") {
+//            it ("should give only 1 way to climb 1 step") {
+//                assertEquals(1, tripleStep(1))
+//            }
+//            it ("should give 2 ways to climb 2 steps") {
+//                assertEquals(2, tripleStep(2))
+//            }
+//            it ("should give 4 ways to climb 3 steps") {
+//                assertEquals(4, tripleStep(3))
+//            }
+//            it ("should give 7 ways to climb 4 steps") {
+//                assertEquals(7, tripleStep(4))
+//            }
+//            it ("should give 13 ways to climb 5 steps") {
+//                assertEquals(13, tripleStep(5))
+//            }
+//        }
+//    }
+
+    describe(" memoized triple steps") {
+        given(" some step") {
+//            it ("should give only 1 way to climb 1 step") {
+//                assertEquals(1, memoisedTripleStep(1))
+//            }
+//            it ("should give 2 ways to climb 2 steps") {
+//                assertEquals(2, memoisedTripleStep(2))
+//            }
+            it ("should give 4 ways to climb 3 steps") {
+                assertEquals(4, memoisedTripleStep(3))
+            }
+            it ("should give 7 ways to climb 4 steps") {
+                assertEquals(7, memoisedTripleStep(4))
+            }
+            it ("should give 13 ways to climb 5 steps") {
+                assertEquals(13, memoisedTripleStep(5))
+
+            }
+        }
+    }
 })
