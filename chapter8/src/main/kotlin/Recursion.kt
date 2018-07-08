@@ -17,6 +17,25 @@ fun addParenthesis(count:Int): List<String> {
 }
 
 
+//25,10,5,1
+
+fun countChange(n : Int, coins: List<Int>) : Int {
+    if( coins.isEmpty() || n < 0 ) {
+        return 0
+    }
+    return when(n) {
+        0 -> 1
+        else -> {
+                   val coin = coins[0]
+                   val c1 = countChange(n - coin, coins)
+                   val c2 = countChange(n, coins.drop(1))
+                   c1 + c2
+            }
+        }
+
+}
+
+
 
 fun tripleStep(n : Int) : Int {
    return when( n ) {
@@ -56,7 +75,19 @@ fun memoisedTripleStep(n : Int) : Int {
 }
 
 
+fun powerSet(s : List<String>) : List<List<String>> {
+     return when( s.isEmpty() ) {
+         true -> listOf(emptyList())
+         false -> {
+             val remaining = powerSet(s.drop(1))
+             remaining + remaining.map { l -> s.take(1) + l }
+         }
+     }
+}
 
+fun main(args: Array<String>) {
+   println( countChange(100 , coins = listOf(1,5,10,25)))
+}
 
 fun isPalindrome(l:List<Int>) : Boolean {
     fun checkPalindrome(head:Int, n:Int, lst: List<Int>) : Pair<Boolean, List<Int>> {
@@ -73,4 +104,16 @@ fun isPalindrome(l:List<Int>) : Boolean {
         }
     }
     return checkPalindrome(l[0], l.size , l).first
+}
+
+
+fun permutations(s: String) : List<String> {
+    return when(s.isEmpty()) {
+        true -> listOf("")
+        false ->
+               s.flatMap  {
+                  c -> permutations(s.filter { x -> x != c })
+                       .map { p -> c + p }
+               }
+    }
 }
