@@ -1,0 +1,6 @@
+.idea/*
+out/*
+.gradle/
+chapter*/.gradle/
+chapter*/out/
+chapter*/build/
