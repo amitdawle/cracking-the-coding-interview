@@ -23,11 +23,8 @@ fun isUnique(s: String): Boolean {
 
 fun isPermutationPalindrome(s: String): Boolean {
     val b = BitSet()
-    s.forEach { c -> val index = c.toLowerCase().toInt()
-                         b.flip(index)  }
-
-    val bitCount = b.stream().reduce(0) { x , _ ->  x + 1 }
-    return bitCount <= 1
+    s.map (Char::toLowerCase).map(Char::toInt).forEach{b.flip(it)}
+    return b.cardinality() <= 1
 }
 
 fun main(args: Array<String>) {
