@@ -25,7 +25,6 @@ class StringsTest : Spek({
                 assertFalse(isUnique("abcdefghijklmnopqrstuvwxyza"))
             }
         }
-
     }
     describe("Check for uniqueness without datastructure "){
         given("an empty list"){
@@ -64,5 +63,28 @@ class StringsTest : Spek({
             }
         }
     }
+
+    describe("Compression of list "){
+        given("an empty list"){
+            it("returns \"\""){
+                assertEquals("", compress(""))
+            }
+        }
+
+        given("a list aabbbbcccddddddddd"){
+            it("returns a2b4c3d9"){
+                assertEquals("a2b4c3d9", compress("aabbbbcccddddddddd"))
+            }
+        }
+
+        given("a list abcde"){
+            it("returns abcde"){
+                assertEquals("abcde", compress("abcde"))
+            }
+        }
+
+
+    }
+
 
 })
