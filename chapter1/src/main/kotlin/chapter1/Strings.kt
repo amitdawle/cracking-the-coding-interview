@@ -29,6 +29,32 @@ fun isPermutationPalindrome(s: String): Boolean {
     return b.cardinality() <= 1
 }
 
+
+fun oneEditAway(s: String, t: String) : Boolean {
+
+    val (longer, shorter) = if (s.length > t.length) Pair(s, t) else Pair(t, s)
+
+    fun isDeletion(l: String, s: String): Boolean {
+        return l.length > s.length
+    }
+
+    fun countEdits(l: String, s: String) : Int{
+       return when(s.isEmpty()){
+            true -> l.length
+            false -> if( l.take(1) == s.take(1)) {
+                countEdits(l.drop(1), s.drop(1))
+            } else if( isDeletion(l , s) ) {
+                1 + countEdits(l.drop(1), s)
+            } else {
+                1 + countEdits(l.drop(1), s.drop(1))
+            }
+
+        }
+    }
+    return countEdits(longer, shorter) <= 1
+}
+
+
 //This could also be done using groupBy
 fun compress(s : String): String {
     val seq = LinkedHashMap<Char, AtomicInteger>()
@@ -50,14 +76,17 @@ fun compress(s : String): String {
 }
 
 fun main(args: Array<String>) {
-    println(isUniqueWithoutAdditionalDataStructure("abba"))
-    println(isUniqueWithoutAdditionalDataStructure("abcd"))
+//    println(isUniqueWithoutAdditionalDataStructure("abba"))
+//    println(isUniqueWithoutAdditionalDataStructure("abcd"))
+//
+//    println(isUnique("abba"))
+//    println(isUnique("abcd"))
+//
+//    println(isPermutationPalindrome("aab b"))
+//    println(isPermutationPalindrome("aab  ab"))
 
-    println(isUnique("abba"))
-    println(isUnique("abcd"))
-
-    println(isPermutationPalindrome("aab b"))
-    println(isPermutationPalindrome("aab  ab"))
-
-
+    println(oneEditAway("pale", "ple"))
+    println(oneEditAway("pales", "pale"))
+    println(oneEditAway("pale", "bale"))
+    println(oneEditAway("pale", "bake"))
 }

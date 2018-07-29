@@ -82,7 +82,34 @@ class StringsTest : Spek({
                 assertEquals("abcde", compress("abcde"))
             }
         }
+    }
 
+    describe("Check one edit away"){
+        given("two empty lists"){
+            it("returns true"){
+                assertTrue(oneEditAway("", ""))
+            }
+        }
+        given("two strings  \"pale\", \"ple\""){
+            it("returns true"){
+                assertTrue(oneEditAway("pale", "ple"))
+            }
+        }
+        given("two strings  \"pales\", \"pale\""){
+            it("returns true"){
+                assertTrue(oneEditAway("pales", "pale"))
+            }
+        }
+        given("two strings  \"pale\", \"bale\""){
+            it("returns true"){
+                assertTrue(oneEditAway("pale", "bale"))
+            }
+        }
+        given("two strings \"pale\", \"bake\""){
+            it("returns true"){
+                assertFalse(oneEditAway("pale", "bake"))
+            }
+        }
 
     }
 
