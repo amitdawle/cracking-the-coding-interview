@@ -75,6 +75,30 @@ private fun <T> Node<T>.drop(k: Int): Node<T> {
 }
 
 
+fun sumListReverseOrder(one: List<Int> , two: List<Int> ) : List<Int> {
+
+    fun sum(s: List<Int>, l: List<Int>, carry: Int ) : List<Int> {
+      return when(s.isEmpty()) {
+            true ->  if (carry == 0 ) l else if (carry != 0 && l.isEmpty()) listOf(carry) else sum(listOf(carry), l, 0)
+            else -> {
+                val a = s[0]
+                val b = l[0]
+                val total = a + b + carry
+                listOf(total % 10) + sum(s.drop(1), l.drop(1), (total) / 10)
+            }
+
+        }
+    }
+    val (l, s) = if( one.size > two.size) Pair(one, two) else Pair(two, one)
+    return sum(s, l, 0)
+
+}
+
 fun <T> buildFrom(l : List<T>) : Node<T> {
     return l.foldRight(EmptyNode as Node<T>) { x, t -> DataNode(x , t) }
+}
+
+fun main(args: Array<String>) {
+    println(sumListReverseOrder(listOf(1), listOf(9,9)))
+    println(sumListReverseOrder(listOf(1,1), listOf(8,9,9,9,9)))
 }
