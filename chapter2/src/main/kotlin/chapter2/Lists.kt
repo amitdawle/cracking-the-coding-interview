@@ -23,6 +23,16 @@ private fun <T> removeDuplicates(n: Node<T>, m: MutableSet<T>) : Node<T> {
     }
 }
 
+fun partition(l : List<Int> , p : Int) : List<Int> {
+    val res = l.fold(Pair(mutableListOf<Int>(), mutableListOf<Int>()))
+    {(xs, ys),  x  ->
+            if (x > p) ys.add(x) else xs.add(x)
+            Pair(xs, ys)
+    }
+
+    return res.first + res.second
+}
+
 // length is not known, recursive
 fun <T> kthToLast(l : Node<T>, k: Int) : Node<T> {
     fun kthToLast(xs: Node<T>, ys: Node<T>) : Node<T>{
@@ -35,7 +45,7 @@ fun <T> kthToLast(l : Node<T>, k: Int) : Node<T> {
 }
 
 
-fun <T> kthToLast_1(l : Node<T>, k: Int) : Node<T> {
+fun <T> kthToLast_1(ls : Node<T>, k: Int) : Node<T> {
     fun kthToLast(xs: Node<T>, n : Int) : Pair<Int, Node<T>> {
         return when (xs) {
             is EmptyNode -> Pair(0, EmptyNode)
@@ -49,7 +59,7 @@ fun <T> kthToLast_1(l : Node<T>, k: Int) : Node<T> {
             }
         }
     }
-    return kthToLast(l, k).second
+    return kthToLast(ls, k).second
 }
 
 

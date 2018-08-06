@@ -69,4 +69,26 @@ class ListsTest : Spek({
         }
     }
 
+
+    describe("Partition"){
+        given("an empty list"){
+            it("returns an empty list"){
+                assertEquals(emptyList<Int>(), partition(emptyList(), 4) )
+            }
+        }
+        given("a list"){
+            it("returns partitioned list"){
+                assertEquals(listOf(1,2,3,4,4,5,5,6,7,7,5),
+                        partition(listOf(1,2,3,4,5,4,5,6,7,7,5), 4) )
+            }
+        }
+        given("a list without partition element"){
+            it("returns same list"){
+                assertEquals(listOf(1,2,3,4,4,5,5,6,7,7,5),
+                        partition(listOf(1,2,3,4,4,5,5,6,7,7,5), 11) )
+            }
+        }
+
+    }
+
 })
