@@ -21,6 +21,29 @@ private fun <T> removeDuplicates(n: Node<T>, m: MutableSet<T>) : Node<T> {
     }
 }
 
+// length is not known, recursive
+fun <T> kthToLast(l : Node<T>, k: Int) : Node<T> {
+    fun kthToLast(xs: Node<T>, ys: Node<T>) : Node<T>{
+       return when(ys){
+            is EmptyNode -> xs
+            is DataNode  -> kthToLast((xs as DataNode).next, ys.next)
+        }
+    }
+    return kthToLast(l, l.drop(k))
+}
+
+private fun <T> Node<T>.drop(k: Int): Node<T> {
+    return when(this){
+        is EmptyNode -> EmptyNode
+        is DataNode -> when( k == 0 ){
+                            true -> this
+                            false -> this.next.drop(k - 1)
+
+        }
+    }
+}
+
+
 fun <T> buildFrom(l : List<T>) : Node<T> {
     return l.foldRight(EmptyNode as Node<T>) { x, t -> DataNode(x , t) }
 }

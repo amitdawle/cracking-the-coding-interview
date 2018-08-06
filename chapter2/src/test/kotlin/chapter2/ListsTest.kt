@@ -27,4 +27,25 @@ class ListsTest : Spek({
             }
         }
     }
+
+    describe("kth to last"){
+        given("an empty list"){
+            it("returns an empty list"){
+                assertEquals(EmptyNode, kthToLast(EmptyNode, 4) )
+            }
+        }
+        given("an list"){
+            it("returns entire list when k > length "){
+                assertEquals(DataNode(1, DataNode(2, EmptyNode)),
+                        kthToLast(buildFrom(listOf(1,2)), 3) )
+            }
+        }
+        given("an list"){
+            it("returns sublist when k < length "){
+                assertEquals(DataNode(2, DataNode(1, EmptyNode)),
+                        kthToLast(buildFrom(listOf(6,5,4,3,2,1)), 2) )
+            }
+        }
+    }
+
 })
